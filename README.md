@@ -1,5 +1,9 @@
 # jetson_benchmark
 
+作者:shihailong
+
+邮箱:lengkujiaai@126.com
+
 ----记于2021-11-30
 
 开发前的大体设想：
