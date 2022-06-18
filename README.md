@@ -42,7 +42,7 @@ device_cap , hgemm.cu , fp16_conversion.h , csv_file.py , python_exe.py ，
 
 2、	开启线程A，运行对jetbot的修改，保存cpu、gpu温度、功耗信息，见截图1
 
-![image](https://github.com/lengkujiaai/video_stabilization/blob/main/image/live_stabilization.gif)
+![image](https://github.com/lengkujiaai/jetson_benchmark/tree/main/image/1.png)
 
 
 3、	调用可执行文件device_cap，获取设备的计算能力，比如nano是5.3，得到的返回值为53，，tx2和tx2-nx的计算能力为6.2，返回值为62，，agx的计算能力为7.2，返回值为72，，，返回的没有小数点是因为方便后面编译cuda文件使用。在函数benchmark2中对hgemm.cu进行编译，，，生成可执行文件 benchmark_shi，，运行benchmark_shi，结束后，结束线程A的运行
@@ -51,7 +51,7 @@ device_cap , hgemm.cu , fp16_conversion.h , csv_file.py , python_exe.py ，
 
 把gpu运行的性能及时间信息保存到csv中，，32位16位交替运行，都记录，，csv第一行记录名称：统计、性能（GFlop/s）、耗时，见截图2
 
-![image](https://github.com/lengkujiaai/video_stabilization/blob/main/image/live_stabilization.gif)
+![image](https://github.com/lengkujiaai/jetson_benchmark/tree/main/image/2.png)
 
 
 添加获取系统时间的函数及变量
@@ -60,4 +60,4 @@ device_cap , hgemm.cu , fp16_conversion.h , csv_file.py , python_exe.py ，
 
 5、	增加计算过程中对实时温度、功耗、性能的打印，见截图3
 
-![image](https://github.com/lengkujiaai/video_stabilization/blob/main/image/live_stabilization.gif)
+![image](https://github.com/lengkujiaai/jetson_benchmark/tree/main/image/3.png)
