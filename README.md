@@ -14,7 +14,9 @@
 其中用到了几个参考：
 1、	cublasHgemm-P100，，，这个是agx的/usr/local/cuda-10.0/samples下面的示例，可以跑32位或16位的矩阵乘法，测量gpu性能，，，，，对其进行了修改，将16位和32位的计算性能写入csv文件
 2、	deviceQuery,,, /usr/local/cuda-10.0/samples/1_Utilities下面，可以查看设备信息，方便根据不同设备进行编译，，，进行了编辑，生成可执行文件device_cap，后面调用
-3、	jetbot，，，，https://github.com/lengkujiaai/jetbot，，，可以调用设备温度、电压，，可以拿到cpu、gpu的温度，功耗，并将这些测试信息计入csv文件
+3、	jetbot
+      https://github.com/lengkujiaai/jetbot
+      可以调用设备温度、电压，，可以拿到cpu、gpu的温度，功耗，并将这些测试信息计入csv文件
 
 文件放在jetson_stats/benchmark_cuda目录下面，主要包含的文件有：
 device_cap , hgemm.cu , fp16_conversion.h , csv_file.py , python_exe.py ，
