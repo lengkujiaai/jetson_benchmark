@@ -1,0 +1,54 @@
+
+
+//------------------------------------------------------------------------------------------------//
+日期：2021-12-2
+作者：shihailong
+联系电话：010-59019111，18901100092
+邮箱：zhanghuilin@cetc-sns.com
+//------------------------------------------------------------------------------------------------//
+
+
+运行：默认只执行5分钟，数组大小为1024×6
+1、 python3 begin_test.py
+
+如果文件夹中没有你要执行的文件，此时你需要自己编译一个，具体方法见步骤2，该方法会自动生成可执行文件benchmark_jetson
+假设原来编译后生成的benchmark_jetson是针对cuda 10的，现在的cuda版本是10.2，也需要重新运行一下python3 compile.py password，其中password是你机器的密码
+2、python3 compile.py password
+
+如果想要执行105.7个小时，只需要把下面的1.2改成105.7就可以了。
+如果想改变数组的大小为1024×5，把下面的6改成5,数组太大会导致在有些设备上运行失败，数组太小会导致无法充分发挥设备的性能。可以先从小数开始，试着慢慢增大。
+3 、python3 begin_test.py 1.2 6
+
+
+报错处理：如果提示没有读写benchmark_record的权限，在终端输入：sudo chmod -R 777 ./ 赋予对应的权限就可以了，也可以直接把文件夹benchmark_record删除：sudo rm -r benchmark_record
+
+
+说明：
+1、程序运行时会在界面打印输出温度、计算时间、算力信息
+2、为了让计算更准确，每次算力的输出重复执行了10遍，求平均，所以你看到的2.5秒（假设某次输出是2.5秒），其实是消耗了25秒
+3、程序同时会把中间的温度、计算时间、算力信息保存到文件夹benchmark_record下面，方便程序运行完的查看
+
+
+---------一些设置----------
+找不到nvcc：https://blog.csdn.net/Flying_sfeng/article/details/103343813
+cd /usr/local/cuda/bin
+
+vim ~/.bashrc
+添加：
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+source ~/.bashrc
+
+还需要安装：sudo apt-get install libncurses5-dev libncursesw5-dev,否则编译时会报找不到头文件ncurses.h
+
+编译：
+nvcc -o saxpy saxpy.cu
+运行：
+./saxpy
+
+编译下面链接中的github代码：nvcc mmul_1.cu -lcublas -lcurand -o a
+https://solarianprogrammer.com/2012/05/31/matrix-multiplication-cuda-cublas-curand-thrust/
+https://github.com/sol-prog/cuda_cublas_curand_thrust
+
+直接定义较大的数组也会出现segmentation fault( core dumped )
